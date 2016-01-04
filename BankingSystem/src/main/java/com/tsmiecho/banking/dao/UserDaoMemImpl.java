@@ -3,9 +3,12 @@ package com.tsmiecho.banking.dao;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.stereotype.Repository;
+
 import com.tsmiecho.banking.pojo.Account;
 import com.tsmiecho.banking.pojo.User;
 
+@Repository
 public class UserDaoMemImpl implements UserDao {
 	private Set<User> users;
 

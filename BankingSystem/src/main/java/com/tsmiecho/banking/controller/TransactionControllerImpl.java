@@ -3,8 +3,9 @@ package com.tsmiecho.banking.controller;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.tsmiecho.banking.dao.TransactionDao;
-import com.tsmiecho.banking.engine.BinProvider;
 import com.tsmiecho.banking.pojo.Account;
 import com.tsmiecho.banking.pojo.Deposit;
 import com.tsmiecho.banking.pojo.DomesticTransfer;
@@ -14,14 +15,9 @@ import com.tsmiecho.banking.pojo.User;
 
 public class TransactionControllerImpl implements TransactionController {
 	
+	@Autowired
 	private TransactionDao transactionDao;
 	
-	private BinProvider binProvider;
-	
-	public TransactionControllerImpl() {
-		binProvider = new BinProvider();
-		transactionDao = binProvider.getTransactionDao();
-	}
 	public boolean createDeposit(Deposit deposit) {
 		return transactionDao.createDeposit(deposit);
 	}

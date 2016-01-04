@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.tsmiecho.banking.dao.UserDao;
-import com.tsmiecho.banking.engine.BinProvider;
+import com.tsmiecho.banking.dao.UserDaoMemImpl;
 import com.tsmiecho.banking.pojo.User;
 
 /**
@@ -21,14 +21,7 @@ public class UserControllerImplTest{
 		logger.info("UserControllerImplTest is loaded");
 	}
 	
-	private UserDao userDao;
-	
-	private BinProvider binProvider;
-	
-	public UserControllerImplTest() {
-		binProvider = new BinProvider();
-		userDao = binProvider.getUserDao();
-	}
+	private UserDao userDao = new UserDaoMemImpl();
 	
 	@Test
 	public void createUser() {

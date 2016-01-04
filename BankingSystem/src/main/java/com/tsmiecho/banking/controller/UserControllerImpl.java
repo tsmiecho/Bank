@@ -3,9 +3,9 @@ package com.tsmiecho.banking.controller;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tsmiecho.banking.dao.UserDao;
-import com.tsmiecho.banking.engine.BinProvider;
 import com.tsmiecho.banking.pojo.Account;
 import com.tsmiecho.banking.pojo.User;
 
@@ -13,15 +13,9 @@ public class UserControllerImpl implements UserController {
 	
 	private static final Logger logger = Logger.getLogger(UserControllerImpl.class);
 	
+	@Autowired
 	private UserDao userDao;
 	
-	private BinProvider binProvider;
-	
-	public UserControllerImpl() {
-		binProvider = new BinProvider();
-		userDao = binProvider.getUserDao();
-	}
-
 	public void createUser(User user) {
 		 userDao.createUser(user);
 	}

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.tsmiecho.banking.pojo.Account;
 import com.tsmiecho.banking.pojo.Deposit;
 import com.tsmiecho.banking.pojo.DomesticTransfer;
@@ -14,7 +16,7 @@ import com.tsmiecho.banking.pojo.Itransfer;
 import com.tsmiecho.banking.pojo.Transaction;
 import com.tsmiecho.banking.pojo.User;
 
-
+@Repository
 public class TransactionDaoMemImpl implements TransactionDao {
 	private ArrayList<Transaction> waitingTransactions;
 	private ArrayList<Transaction> canceledTransactions;
