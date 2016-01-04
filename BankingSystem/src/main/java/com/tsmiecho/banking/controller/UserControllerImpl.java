@@ -2,14 +2,21 @@ package com.tsmiecho.banking.controller;
 
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import com.tsmiecho.banking.dao.UserDao;
 import com.tsmiecho.banking.engine.BinProvider;
 import com.tsmiecho.banking.pojo.Account;
 import com.tsmiecho.banking.pojo.User;
 
 public class UserControllerImpl implements UserController {
+	
+	private static final Logger logger = Logger.getLogger(UserControllerImpl.class);
+	
 	private UserDao userDao;
+	
 	private BinProvider binProvider;
+	
 	public UserControllerImpl() {
 		binProvider = new BinProvider();
 		userDao = binProvider.getUserDao();
@@ -21,7 +28,9 @@ public class UserControllerImpl implements UserController {
 
 	public void deleteUser(User user) {
 		if(!userDao.deleteUser(user)){
-			System.out.println("User not found");
+			if(logger.isDebugEnabled()){
+				logger.debug("User not found");
+			}
 		}
 	}
 

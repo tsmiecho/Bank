@@ -13,8 +13,11 @@ import com.tsmiecho.banking.pojo.Transaction;
 import com.tsmiecho.banking.pojo.User;
 
 public class TransactionControllerImpl implements TransactionController {
+	
 	private TransactionDao transactionDao;
+	
 	private BinProvider binProvider;
+	
 	public TransactionControllerImpl() {
 		binProvider = new BinProvider();
 		transactionDao = binProvider.getTransactionDao();
