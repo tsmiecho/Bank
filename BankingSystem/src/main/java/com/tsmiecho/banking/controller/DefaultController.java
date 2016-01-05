@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author Tomasz Śmiechowicz
  */
+
 @Controller
 @RequestMapping("/")
 public class DefaultController {
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String prString(ModelMap model){
 		model.put("message", "Hello");

@@ -1,24 +1,48 @@
 package com.tsmiecho.banking.pojo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+/**
+ * User model
+ *
+ * @author Tomasz Śmiechowicz
+ */
+@Entity
+@Table(name = "User")
 public class User {
-	
-	private String name;
-	private String surname;
-	private String address;
-	private String ssn; 
-	private String idNumber;
-	private List<Account> accountsList;
-	private List<Account> closedAccountsList;
 
-	public User(String name, String idNumber, String ssn) {
-		this.setName(name);
-		this.setIdNumber(idNumber);
-		this.setSsn(ssn);
-		setAccountsList(new ArrayList<Account>());
-		setClosedAccountsList(new ArrayList<Account>());
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	@Column
+	private String name;
+
+	@Column
+	private String surname;
+
+	@Column
+	private String address;
+	
+	@OneToMany(mappedBy = "number", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Account> accounts;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -43,37 +67,5 @@ public class User {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public String getIdNumber() {
-		return idNumber;
-	}
-
-	public void setIdNumber(String idNumber) {
-		this.idNumber = idNumber;
-	}
-
-	public List<Account> getAccountsList() {
-		return accountsList;
-	}
-
-	private void setAccountsList(List<Account> accountsList) {
-		this.accountsList = accountsList;
-	}
-
-	public String getSsn() {
-		return ssn;
-	}
-
-	private void setSsn(String ssn) {
-		this.ssn = ssn;
-	}
-
-	public List<Account> getClosedAccountsList() {
-		return closedAccountsList;
-	}
-
-	private void setClosedAccountsList(List<Account> closedAccountsList) {
-		this.closedAccountsList = closedAccountsList;
 	}
 }
