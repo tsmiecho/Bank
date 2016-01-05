@@ -13,16 +13,16 @@ import com.tsmiecho.banking.pojo.User;
 
 
 /**
- * Controller for users.
+ * Controller for adding users.
  * 
  * @author Tomasz Śmiechowicz
  */
 
 @Controller
 @RequestMapping("/new_user")
-public class UserController {
+public class NewUserController {
 	
-	private static final Logger logger = Logger.getLogger(UserController.class);
+	private static final Logger logger = Logger.getLogger(NewUserController.class);
 	
 	@Autowired
 	private UserDao userDao;

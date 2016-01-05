@@ -36,7 +36,7 @@ public class User {
 	
 	@OneToMany(mappedBy = "number", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Account> accounts;
-
+	
 	public Long getId() {
 		return id;
 	}
