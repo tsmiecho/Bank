@@ -1,32 +1,33 @@
 package com.tsmiecho.banking.pojo;
 
 import java.math.BigDecimal;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 public class Account {
-	private GregorianCalendar creatingDate;
+	
+	private LocalDate creatingDate;
 	private String number;
-	private GregorianCalendar closingDate;
+	private LocalDate closingDate;
 	private String country;
 	private BigDecimal balance;
 	private String swift;
 	private static int accountNumberCounter = 1000;
 
-	public Account(String country, double balance) {
+	public Account(String country, BigDecimal balance) {
 		this.setBalance(balance);
-		this.closingDate = new GregorianCalendar();
+		this.closingDate = LocalDate.now();
 		this.country = country;
-		this.creatingDate = new GregorianCalendar();
+		this.creatingDate = LocalDate.now();
 		this.setNumber("00 5700 0000 " + accountNumberCounter);
 		accountNumberCounter++;
 		this.setSwift("ACCBTPLX");
 	}
 
-	public Account(String country, double balance, String swift) {
+	public Account(String country, BigDecimal balance, String swift) {
 		this.setBalance(balance);
-		this.closingDate = new GregorianCalendar();
+		this.closingDate = LocalDate.now();
 		this.country = country;
-		this.creatingDate = new GregorianCalendar();
+		this.creatingDate = LocalDate.now();
 		this.setNumber("00 5700 0000 " + accountNumberCounter);
 		accountNumberCounter++;
 		this.setSwift(swift);
@@ -55,26 +56,6 @@ public class Account {
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
-	
-	public void setBalance(double balance) {
-		this.balance = new BigDecimal(balance);
-	}
-
-	public GregorianCalendar getCreatingDate() {
-		return creatingDate;
-	}
-
-	public void setCreatingDate(GregorianCalendar creatingDate) {
-		this.creatingDate = creatingDate;
-	}
-
-	public GregorianCalendar getClosingDate() {
-		return closingDate;
-	}
-
-	public void setClosingDate(GregorianCalendar closingDate) {
-		this.closingDate = closingDate;
-	}
 
 	public String getCountry() {
 		return country;
@@ -83,5 +64,24 @@ public class Account {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 	
+    public LocalDate getCreatingDate() {
+    	return creatingDate;
+    }
+
+	
+    public void setCreatingDate(LocalDate creatingDate) {
+    	this.creatingDate = creatingDate;
+    }
+
+	
+    public LocalDate getClosingDate() {
+    	return closingDate;
+    }
+
+	
+    public void setClosingDate(LocalDate closingDate) {
+    	this.closingDate = closingDate;
+    }
 }

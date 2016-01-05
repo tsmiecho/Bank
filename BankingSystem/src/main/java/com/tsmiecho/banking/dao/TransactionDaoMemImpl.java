@@ -1,12 +1,14 @@
 package com.tsmiecho.banking.dao;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
+import com.tsmiecho.banking.controller.NewForeignTransferController;
 import com.tsmiecho.banking.pojo.Account;
 import com.tsmiecho.banking.pojo.Deposit;
 import com.tsmiecho.banking.pojo.DomesticTransfer;
@@ -18,6 +20,9 @@ import com.tsmiecho.banking.pojo.User;
 
 @Repository
 public class TransactionDaoMemImpl implements TransactionDao {
+	
+	private static final Logger logger = Logger.getLogger(NewForeignTransferController.class);
+	
 	private ArrayList<Transaction> waitingTransactions;
 	private ArrayList<Transaction> canceledTransactions;
 	private ArrayList<Transaction> confirmedTransactions;
@@ -44,10 +49,9 @@ public class TransactionDaoMemImpl implements TransactionDao {
 			transaction.setTransactionStatus(EnumTransactionStatus.Confirmed);
 			transaction.getReceiverAccount().setBalance(transaction.getReceiverAccount().
 					getBalance().add(transaction.getAmount()));
-			transaction.setBalanceAfterTransactionReceiver(transaction.getReceiverAccount().getBalance().doubleValue());
+			transaction.setBalanceAfterTransactionReceiver(transaction.getReceiverAccount().getBalance());
 			if(transaction instanceof Itransfer){
-				((Itransfer)transaction).setBalanceAfterTransactionSender(((Itransfer)transaction).getSenderAccount()
-						.getBalance().doubleValue());
+				((Itransfer)transaction).setBalanceAfterTransactionSender(((Itransfer)transaction).getSenderAccount().getBalance());
 			}
 			confirmedTransactions.add(transaction);
 			waitingTransactions.remove(transaction);
@@ -129,25 +133,23 @@ public class TransactionDaoMemImpl implements TransactionDao {
 	}
 
 	public void showAccountHistory(Account account) {
-		System.out.println(account.getNumber());
 		for(Transaction t : confirmedTransactions){
 			if(t.getReceiverAccount().equals(account)){
-				System.out.println("Balance after transaction: " + t.getBalanceAfterTransactionReceiver());
+				logger.debug("Balance after transaction: " + t.getBalanceAfterTransactionReceiver());
 			}
 			if(t instanceof Itransfer && ((Itransfer) t).getSenderAccount().equals(account)){
-				System.out.println("Balance after transaction: " + ((Itransfer) t).getBalanceAfterTransactionSender());
+				logger.debug("Balance after transaction: " + ((Itransfer) t).getBalanceAfterTransactionSender());
 			}
 		}
 	}
 
-	public void showAccountHistory(Account account, GregorianCalendar gc) {
-		System.out.println(account.getNumber() + " after "+ gc.getTime());
+	public void showAccountHistory(Account account, LocalDate gc) {
 		for(Transaction t : confirmedTransactions){
-			if(t.getReceiverAccount().equals(account) && t.getTransactionDate().getTimeInMillis() > gc.getTimeInMillis()){
-				System.out.println("Balance after transaction: " + t.getBalanceAfterTransactionReceiver());
+			if(t.getReceiverAccount().equals(account) && t.getTransactionDate().isAfter(gc)){
+				logger.debug("Balance after transaction: " + t.getBalanceAfterTransactionReceiver());
 			}
-			if(t instanceof Itransfer && ((Itransfer) t).getSenderAccount().equals(account) && t.getTransactionDate().getTimeInMillis() > gc.getTimeInMillis()){
-				System.out.println("Balance after transaction: " + ((Itransfer) t).getBalanceAfterTransactionSender());
+			if(t instanceof Itransfer && ((Itransfer) t).getSenderAccount().equals(account) && t.getTransactionDate().isAfter(gc)){
+				logger.debug("Balance after transaction: " + ((Itransfer) t).getBalanceAfterTransactionSender());
 			}
 		}
 	}

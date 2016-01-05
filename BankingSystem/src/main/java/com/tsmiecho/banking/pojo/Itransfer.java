@@ -1,10 +1,12 @@
 package com.tsmiecho.banking.pojo;
 
+import java.math.BigDecimal;
+
 public interface Itransfer {
 	
 	Account getSenderAccount();
 	
-	double getBalanceAfterTransactionSender();
+	BigDecimal getBalanceAfterTransactionSender();
 	
-	void setBalanceAfterTransactionSender(double balanceAfterTransactionSender);
+	void setBalanceAfterTransactionSender(BigDecimal balanceAfterTransactionSender);
 }

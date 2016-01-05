@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+	
 	private String name;
 	private String surname;
 	private String address;
@@ -75,5 +76,4 @@ public class User {
 	private void setClosedAccountsList(List<Account> closedAccountsList) {
 		this.closedAccountsList = closedAccountsList;
 	}
-
 }

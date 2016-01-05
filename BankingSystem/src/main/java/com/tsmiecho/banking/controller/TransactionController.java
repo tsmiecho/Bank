@@ -1,6 +1,6 @@
 package com.tsmiecho.banking.controller;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.tsmiecho.banking.pojo.Account;
@@ -11,7 +11,6 @@ import com.tsmiecho.banking.pojo.Transaction;
 import com.tsmiecho.banking.pojo.User;
 
 public interface TransactionController {
-
 
 	boolean createDeposit(Deposit deposit);
 
@@ -33,6 +32,6 @@ public interface TransactionController {
 
 	void showAccountHistory(Account accountByNumber);
 
-	void showAccountHistory(Account accountByNumber, GregorianCalendar t);
+	void showAccountHistory(Account accountByNumber, LocalDate t);
 
 }

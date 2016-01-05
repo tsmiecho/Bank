@@ -1,17 +1,22 @@
 package com.tsmiecho.banking.pojo;
 
-import java.util.GregorianCalendar;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 
 public class Deposit extends Transaction {
-	public Deposit(Account receiverAccount, String title, double amount) {
+	
+	private static final int DEPOSIT_NUMBER_BASE = 10000;
+	
+	public Deposit(Account receiverAccount, String title, BigDecimal amount) {
+		
 		this.setTransactionStatus(EnumTransactionStatus.Accepted);
 		this.setReceiverAccount(receiverAccount);
-		this.title = title;
+		this.setTitle(title);
 		this.setTransactionNumber(DEPOSIT_NUMBER_BASE + transactionCounter);
 		this.setAmount(amount);
-		this.setTransactionDate(new GregorianCalendar());
+		this.setTransactionDate(LocalDate.now());
 	}
 
-	private final int DEPOSIT_NUMBER_BASE = 10000;
 }
 

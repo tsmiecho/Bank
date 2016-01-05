@@ -1,6 +1,6 @@
 package com.tsmiecho.banking.controller;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +54,7 @@ public class TransactionControllerImpl implements TransactionController {
 		transactionDao.showAccountHistory(accountByNumber);
 		
 	}
-	public void showAccountHistory(Account accountByNumber, GregorianCalendar t) {
+	public void showAccountHistory(Account accountByNumber, LocalDate t) {
 		transactionDao.showAccountHistory(accountByNumber,t);
 	}
 }

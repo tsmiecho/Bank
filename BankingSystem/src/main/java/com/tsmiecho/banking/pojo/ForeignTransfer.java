@@ -1,32 +1,43 @@
 package com.tsmiecho.banking.pojo;
 
-import java.util.GregorianCalendar;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
-public class ForeignTransfer extends Transaction implements Itransfer{
-	public ForeignTransfer(Account receiverAccount, Account senderAccount,
-			String title, double amount) {
+public class ForeignTransfer extends Transaction implements Itransfer {
+
+	private BigDecimal balanceAfterTransactionSender;
+
+	private Account senderAccount;
+
+	private static final int FOREIGN_TRANSFER_NUMBER_BASE = 0;
+
+	public ForeignTransfer() {
+	};
+
+	public ForeignTransfer(Account receiverAccount, Account senderAccount, String title, BigDecimal amount) {
+		
 		this.setTransactionStatus(EnumTransactionStatus.Accepted);
 		this.setReceiverAccount(receiverAccount);
 		this.setSenderAccount(senderAccount);
-		this.title = title;
+		this.setTitle(title);
 		this.setTransactionNumber(FOREIGN_TRANSFER_NUMBER_BASE + transactionCounter);
 		this.setAmount(amount);
-		this.setTransactionDate(new GregorianCalendar());
+		this.setTransactionDate(LocalDate.now());
 	}
+
 	public Account getSenderAccount() {
 		return senderAccount;
 	}
+
 	public void setSenderAccount(Account senderAccount) {
 		this.senderAccount = senderAccount;
 	}
-	public double getBalanceAfterTransactionSender() {
+
+	public BigDecimal getBalanceAfterTransactionSender() {
 		return balanceAfterTransactionSender;
 	}
-	public void setBalanceAfterTransactionSender(
-			double balanceAfterTransactionSender) {
+
+	public void setBalanceAfterTransactionSender(BigDecimal balanceAfterTransactionSender) {
 		this.balanceAfterTransactionSender = balanceAfterTransactionSender;
 	}
-	private double balanceAfterTransactionSender;
-	private Account senderAccount;
-	private final int FOREIGN_TRANSFER_NUMBER_BASE = 0;
 }

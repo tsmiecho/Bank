@@ -1,6 +1,6 @@
 package com.tsmiecho.banking.dao;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.tsmiecho.banking.pojo.Account;
@@ -32,7 +32,7 @@ public interface TransactionDao {
 
 	void showAccountHistory(Account accountByNumber);
 
-	void showAccountHistory(Account accountByNumber, GregorianCalendar t);
+	void showAccountHistory(Account accountByNumber, LocalDate t);
 
 
 }
