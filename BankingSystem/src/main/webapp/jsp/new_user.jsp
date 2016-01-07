@@ -7,6 +7,7 @@
 <body>
 	<form:form modelAttribute="user" method="POST" action="/BankingSystem/new_user">
 		<table>
+			<form:hidden path="enabled" value="true" />
 			<tr>
 				<td><form:label path="name">name</form:label></td>
 				<td><form:input path="name" /></td>
@@ -16,8 +17,8 @@
 				<td><form:input path="surname" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="address">address</form:label></td>
-				<td><form:input path="address" /></td>
+				<td><form:label path="password">password</form:label></td>
+				<td><form:input path="password" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Submit" /></td>

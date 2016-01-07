@@ -4,11 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import lombok.Data;
+
 /**
  * Bank account model
  *
  * @author Tomasz Śmiechowicz
  */
+
+@Data
 @Entity
 public class Account {
 
@@ -17,21 +21,5 @@ public class Account {
 
 	@ManyToOne
 	private User owner;
-
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-	public User getOwner() {
-		return owner;
-	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
 
 }

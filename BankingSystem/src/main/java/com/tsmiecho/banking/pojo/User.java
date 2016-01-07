@@ -12,11 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 /**
  * User model
  *
  * @author Tomasz Śmiechowicz
  */
+
+@Data
 @Entity
 @Table(name = "User")
 public class User {
@@ -30,6 +34,12 @@ public class User {
 
 	@Column
 	private String surname;
+	
+	@Column
+	private String password;
+	
+	@Column
+	private boolean enabled;
 
 	@Column
 	private String address;
@@ -37,35 +47,4 @@ public class User {
 	@OneToMany(mappedBy = "number", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Account> accounts;
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
 }
