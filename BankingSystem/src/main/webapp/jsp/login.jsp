@@ -4,7 +4,7 @@
 <title>Bank</title>
 </head>
 <body>
-	<form method="post" action="/BankingSystem/login">
+	<form method="post" action="${pageContext.request.contextPath}/login">
 		login<input type="text" name="login" /> 
 		password<input type="password" name="password" />
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

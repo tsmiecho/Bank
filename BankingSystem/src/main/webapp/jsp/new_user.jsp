@@ -3,9 +3,10 @@
 <html>
 <head>
 <title>Bank</title>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
-	<form:form modelAttribute="user" method="POST" action="/BankingSystem/new_user">
+	<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/new_user">
 		<table>
 			<form:hidden path="enabled" value="true" />
 			<form:hidden path="userRole" value="ROLE_USER" />
@@ -25,10 +26,12 @@
 				<td><form:label path="password">password</form:label></td>
 				<td><form:input path="password" /></td>
 			</tr>
+			
 			<tr>
 				<td colspan="2"><input type="submit" value="Submit" /></td>
 			</tr>
 		</table>
+		<div class="g-recaptcha" data-sitekey="6LeHuRQTAAAAAIHsh-gb-P37_N0aRESDWAoF6Rmf"></div>
 	</form:form>
 </body>
 </html>

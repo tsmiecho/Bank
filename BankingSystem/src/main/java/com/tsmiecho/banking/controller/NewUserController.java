@@ -4,9 +4,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tsmiecho.banking.dao.UserDao;
 import com.tsmiecho.banking.pojo.User;
@@ -34,10 +36,16 @@ public class NewUserController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String toPost(@ModelAttribute("user") User user, ModelMap model){
+	public String toPost(@ModelAttribute("user") User user, @RequestParam("g-recaptcha-response") String r, ModelMap model){
 		if(logger.isDebugEnabled()){
 			logger.debug(user);
+			logger.debug("Captcha is checked" + r);
 		}
+		
+		if(StringUtils.isEmpty(r)){
+			return toGet(model);
+		}
+		
 		userDao.createUser(user);
 		return "hello";
 	}

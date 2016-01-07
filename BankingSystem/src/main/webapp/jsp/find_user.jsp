@@ -16,7 +16,7 @@
 		<ul>
 		<c:forEach items="${users}" var="user">
 			
-			<form method="POST" action="/BankingSystem/admin/delete_user">
+			<form method="POST" action="${pageContext.request.contextPath}/admin/delete_user">
 				<li>${user.name} ${user.surname} 
 				<input type="hidden" value="${user.id}" name="userId">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
