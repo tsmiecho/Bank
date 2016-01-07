@@ -30,14 +30,20 @@ public class User {
 	private Long id;
 
 	@Column
+	private String login;
+
+	@Column
+	private String password;
+	
+	@Column(name = "user_role")
+	private String userRole;
+
+	@Column
 	private String name;
 
 	@Column
 	private String surname;
-	
-	@Column
-	private String password;
-	
+
 	@Column
 	private boolean enabled;
 

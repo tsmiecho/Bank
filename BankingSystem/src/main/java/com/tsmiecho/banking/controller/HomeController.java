@@ -7,18 +7,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 /**
- * Main controller for /
  *
  * @author Tomasz Śmiechowicz
  */
 
 @Controller
 @RequestMapping("/")
-public class DefaultController {
+public class HomeController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String prString(ModelMap model){
-		model.put("message", "Hello");
+	public String toGet(ModelMap model){
 		return "hello";
 	}
 }
